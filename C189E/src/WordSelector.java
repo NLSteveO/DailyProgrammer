@@ -13,11 +13,13 @@ public class WordSelector{
     private File file;
     private ArrayList<String> wordList;
 
+    // Constructor, creates File with set filename and calls loadList
     public WordSelector(){
             file = new File(filename);
             loadList();
     }
 
+    // Takes the given wordList file and creates an ArrayList out of it conatining all the words
     public void loadList(){
         try {
             wordList = new ArrayList<String>();
@@ -40,6 +42,7 @@ public class WordSelector{
         }
     }
 
+    // Takes in a string to give the word difficulty and returns a word matching the difficulty.
     public String getWord(String difficulty){
         int minLen, maxLen;
         if (difficulty.equalsIgnoreCase("hard")) {
@@ -68,8 +71,15 @@ public class WordSelector{
         return word;
     }
 
+    // Main class. Being used to test at the moment. Will be removed later.
     public static void main(String[] args) {
         WordSelector test = new WordSelector();
         System.out.println(test.getWord("hard"));
+        System.out.println(test.getWord("medium"));
+        String easy = test.getWord("easy");
+        System.out.println(easy);
+        char[] easy2 = easy.toCharArray();
+        System.out.println(easy2[0]);
+        
     }
 }
