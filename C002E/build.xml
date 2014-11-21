@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project name="Tip Calc" default="help" basedir=".">
+
+	<target name="help">
+		<echo message="ant help -- Print this message."/>
+		<echo message="ant run -- Tells you how to run the program."/>
+		<echo message="ant compile -- Compiles the source files."/>
+		<echo message="ant clean -- Removes class files."/>
+	</target>
+
+	<property name="src" value="src"/>
+	<property name="class" value="classes"/>
+
+	<target name="init">
+		<mkdir dir="${class}"/>
+	</target>
+
+	<target name="run" depends="compile">
+		<echo message="To run this program use the following command:"/>
+		<echo message="%java -cp classes TipCalc -options arg1 arg2"/>
+        <echo message="   ---OR---   "/>
+		<echo message="%java -cp classes TipCalc -help"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac includeantruntime="false"
+			srcdir="${src}" destdir="${class}">
+			<include name="**/*.java"/>
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete>
+			<fileset dir="${class}" includes="**/*.class"/>
+		</delete>
+	</target>
+</project>
