@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class Hangman{
 
-    public Hangman(){}
-
+    /*
+     * When this method is called it will draw the gallows
+     * with appropriate amount of the man as specified by n
+     */
     public static void Draw(int n) {
         String gallows = "   _\n  | |\n  |\n  |\n  |\n  |\n__|____\n";
         String head = "   _\n  | |\n  | O\n  |\n  |\n  |\n__|____\n";
@@ -37,6 +39,7 @@ public class Hangman{
         }
     }
 
+    // Main method
     public static void main(String[] args){
         ArrayList<Character> guesses = new ArrayList<Character>();
         ArrayList<Character> printout = new ArrayList<Character>();

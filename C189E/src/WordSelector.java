@@ -29,15 +29,16 @@ public class WordSelector{
                 wordList.add(word);
                 word = reader.readLine();
             }
+            reader.close();
         }
         catch(FileNotFoundException e) {
             System.out.println("Something went terribly wrong!");
-            System.out.println(e);
+            System.out.println(e.getMessage());
             System.exit(1);
         }
         catch(Exception e) {
             System.out.println("Something went terribly wrong!");
-            System.out.println(e);
+            System.out.println(e.getMessage());
             System.exit(1);
         }
     }
@@ -45,7 +46,7 @@ public class WordSelector{
     // Takes in a string to give the word difficulty and returns a word matching the difficulty.
     public String getWord(String difficulty){
         int minLen, maxLen;
-        if (difficulty.equalsIgnoreCase("hard")) {
+        if (difficulty.equalsIgnoreCase("easy")) {
             minLen = 7;
             maxLen = 100;
         }
@@ -69,17 +70,5 @@ public class WordSelector{
             }
         }
         return word;
-    }
-
-    // Main class. Being used to test at the moment. Will be removed later.
-    public static void main(String[] args) {
-        WordSelector test = new WordSelector();
-        System.out.println(test.getWord("hard"));
-        System.out.println(test.getWord("medium"));
-        String easy = test.getWord("easy");
-        System.out.println(easy);
-        char[] easy2 = easy.toCharArray();
-        System.out.println(easy2[0]);
-        
     }
 }
