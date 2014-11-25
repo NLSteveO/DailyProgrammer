@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<project name="Encrypt" default="help" basedir=".">
+
+	<target name="help">
+		<echo message="ant help -- Print this message."/>
+        <echo message="ant run -- Runs the program with given arguments(-Darg#='your arg')."/>
+		<echo message="ant run-encrypt -- Runs the encrypt program with predefined file and shift amount."/>
+		<echo message="ant run-decrypt -- Runs the decrypt program with predefined file and shift amount."/>
+		<echo message="ant compile -- Compiles the source files."/>
+		<echo message="ant clean -- Removes class files."/>
+	</target>
+
+	<property name="src" value="src"/>
+	<property name="class" value="classes"/>
+    <property name="in" value="lib/testfile.txt"/>
+
+	<target name="init">
+		<mkdir dir="${class}"/>
+	</target>
+
+    <target name="run" depends="compile">
+        <java classname="Encrypt" fork="true">
+			<classpath path="${class}"/>
+            <arg value="${arg0}"/>
+			<arg value="${arg1}"/>
+            <arg value="${arg2}"/>
+		</java>
+    </target>
+
+	<target name="run-encrypt" depends="compile">
+        <java classname="Encrypt" fork="true">
+			<classpath path="${class}"/>
+            <arg value="-e"/>
+			<arg value="${in}"/>
+            <arg value="13"/>
+		</java>
+	</target>
+
+	<target name="run-decrypt" depends="compile">
+        <java classname="Encrypt" fork="true">
+			<classpath path="${class}"/>
+            <arg value="-d"/>
+			<arg value="${in}"/>
+            <arg value="13"/>
+		</java>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac includeantruntime="false"
+			srcdir="${src}" destdir="${class}">
+			<include name="**/*.java"/>
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete>
+			<fileset dir="${class}" includes="**/*.class"/>
+			<fileset dir="lib" includes="**/*.dat"/>
+			<fileset dir="lib" includes="**/*2.txt"/>
+		</delete>
+	</target>
+</project>
